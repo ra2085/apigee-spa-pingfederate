@@ -161,7 +161,7 @@ export class AuthorizationService {
     return this._userInfos.asObservable().pipe(distinctUntilChanged());
   }
   
-  logOut(): void {
+  sessionActivity(): void {
 	  console.log('log out');
 	  if (this._userInfos.value == null) {
           const accessToken = token.accessToken;
@@ -176,7 +176,7 @@ export class AuthorizationService {
       }
   }
 
-  sessionActivity(): void  {
+  authorize(): void  {
     this._serviceConfigs
     .pipe(filter((value: any) => value != null))
     .pipe(take(1))
