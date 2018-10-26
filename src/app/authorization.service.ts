@@ -170,13 +170,11 @@ export class AuthorizationService {
               method: 'GET',
               dataType: 'json',
               headers: {'Authorization': `Bearer ${accessToken}`}
-            }).then((userinfo, err) => {
-			  if (err) {
-				  authorize();
-			  } else {
-			      this._userInfos.next(userinfo);
-			  }
-         });
+            }).then((userinfo) => {
+			  this._userInfos.next(userinfo);
+         }).catch((err) => {
+			 authorize();
+		 });
       }
   }
 
