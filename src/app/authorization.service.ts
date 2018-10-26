@@ -160,8 +160,23 @@ export class AuthorizationService {
   public userInfos(): Observable<UserInfo> {
     return this._userInfos.asObservable().pipe(distinctUntilChanged());
   }
+  
+  logOut(): void {
+	  console.log('log out');
+	  if (this._userInfos.value == null) {
+          const accessToken = token.accessToken;
+          this.requestor.xhr<UserInfo>({
+              url: configuration.userInfoEndpoint,
+              method: 'GET',
+              dataType: 'json',
+              headers: {'Authorization': `Bearer ${accessToken}`}
+            }).then((userinfo) => {
+              this._userInfos.next(userinfo);
+         });
+      }
+  }
 
-  authorize(): void  {
+  sessionActivity(): void  {
     this._serviceConfigs
     .pipe(filter((value: any) => value != null))
     .pipe(take(1))
