@@ -164,9 +164,9 @@ export class AuthorizationService {
   sessionActivity(): void {
 	  if (this._userInfos.value != null) {
 		  console.log('session activity');
-          const accessToken = window.localStorage.getItem(LS_TOKEN_RESPONSE);
+          const accessToken = _tokenResponses.getValue();
           this.requestor.xhr<UserInfo>({
-              url: configuration.userInfoEndpoint,
+              url: _serviceConfigs.getValue().userInfoEndpoint,
               method: 'GET',
               dataType: 'json',
               headers: {'Authorization': `Bearer ${accessToken}`}
