@@ -173,7 +173,7 @@ export class AuthorizationService {
             }).then((userinfo) => {
 			  this._userInfos.next(userinfo);
          }).catch((err) => {
-			 authorize();
+			 this.authorize();
 		 });
       }
   }
