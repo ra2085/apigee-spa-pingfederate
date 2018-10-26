@@ -162,8 +162,8 @@ export class AuthorizationService {
   }
   
   sessionActivity(): void {
-	  console.log('log out');
-	  if (this._userInfos.value == null) {
+	  if (this._userInfos.value != null) {
+		  console.log('session activity');
           const accessToken = token.accessToken;
           this.requestor.xhr<UserInfo>({
               url: configuration.userInfoEndpoint,
