@@ -164,7 +164,7 @@ export class AuthorizationService {
   sessionActivity(): void {
 	  if (this._userInfos.value != null) {
 		  console.log('session activity');
-          const accessToken = this._tokenResponses.getValue();
+          const accessToken = this._tokenResponses.getValue().accessToken;
           this.requestor.xhr<UserInfo>({
               url: this._serviceConfigs.getValue().userInfoEndpoint,
               method: 'GET',
