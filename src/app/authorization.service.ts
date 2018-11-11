@@ -182,8 +182,9 @@ export class AuthorizationService {
   }
   
   pingSLO(): void {
-	  this.signOut();
-	  
+	  //this.signOut();
+	  let currentUri = `${this.locationLike.origin}${this.locationLike.pathname}`;
+	  console.log('COSOSL ' + currentUri);
   }
 
   authorize(): void  {
