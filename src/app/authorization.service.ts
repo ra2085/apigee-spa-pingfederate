@@ -23,10 +23,8 @@ import {
   GRANT_TYPE_AUTHORIZATION_CODE,
   AppAuthError,
   AuthorizationServiceConfigurationJson,
-  QueryStringUtils
-} from '@openid/appauth';
-import {
-	LocationLike
+  QueryStringUtils,
+  LocationLike
 } from '@openid/appauth';
 
 import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
