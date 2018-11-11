@@ -23,8 +23,8 @@ import {
   GRANT_TYPE_AUTHORIZATION_CODE,
   AppAuthError,
   AuthorizationServiceConfigurationJson,
-  QueryStringUtils,
   BasicQueryStringUtils,
+  QueryStringUtils,
   LocationLike
 } from '@openid/appauth';
 
@@ -190,7 +190,7 @@ export class AuthorizationService {
       'TargetResource': currentUri
 	  );
 	  let query = this.utils.stringify(requestMap);
-	  this.locationLike.assign(`${this._serviceConfigs.getValue().endSessionEndpoint}?${query}`);
+	  this.locationLike.assign(`${this.issuer_uri}/idp/startSLO.ping?${query}`);
   }
 
   authorize(): void  {
