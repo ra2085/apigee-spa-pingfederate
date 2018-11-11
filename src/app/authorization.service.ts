@@ -42,7 +42,7 @@ const LS_TOKEN_RESPONSE = 'authorization.service.token_response';
 export class AuthorizationService {
 
   private locationLike: LocationLike = window.location;
-  private utils: QueryStringUtils;
+  private utils: QueryStringUtils = new BasicQueryStringUtils();
   private notifier = new AuthorizationNotifier();
   private authorizationHandler = new RedirectRequestHandler();
 
