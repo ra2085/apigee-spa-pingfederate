@@ -190,7 +190,7 @@ export class AuthorizationService {
       'TargetResource': currentUri
 	  );
 	  let query = this.utils.stringify(requestMap);
-	  this.locationLike.assign(`${this._serviceConfigs.getValue().issuer_uri}/idp/startSLO.ping?${query}`);
+	  this.locationLike.assign(`${this._serviceConfigs.getValue().endSessionEndpoint}?${query}`);
   }
 
   authorize(): void  {
