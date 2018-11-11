@@ -185,13 +185,13 @@ export class AuthorizationService {
   
   pingSLO(): void {
 	  this.signOut();
-	  let currentUri = `${this.locationLike.origin}${this.locationLike.pathname}`;
+	  /*let currentUri = `${this.locationLike.origin}${this.locationLike.pathname}`;
 	  let requestMap: StringMap = {
       'TargetResource': currentUri
 	  );
-	  let query = this.utils.stringify(requestMap);
+	  let query = this.utils.stringify(requestMap);*/
 	  let issuer_url = new URL(this._serviceConfigs.getValue().userInfoEndpoint);
-	  this.locationLike.assign(`https://${issuer_url.host}/idp/startSLO.ping?${query}`);
+	  this.locationLike.assign(`https://${issuer_url.host}/idp/startSLO.ping`);
   }
 
   authorize(): void  {
