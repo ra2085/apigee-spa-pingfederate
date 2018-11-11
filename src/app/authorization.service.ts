@@ -41,7 +41,7 @@ const LS_TOKEN_RESPONSE = 'authorization.service.token_response';
 @Injectable()
 export class AuthorizationService {
 
-  private locationLike = LocationLike = window.location;
+  private locationLike: LocationLike = window.location;
   private notifier = new AuthorizationNotifier();
   private authorizationHandler = new RedirectRequestHandler();
 
