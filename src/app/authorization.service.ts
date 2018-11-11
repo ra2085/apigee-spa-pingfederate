@@ -27,7 +27,6 @@ import {
   QueryStringUtils,
   LocationLike
 } from '@openid/appauth';
-const { URL } = require('url');
 
 import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
 import { distinctUntilChanged, filter, take } from 'rxjs/operators';
