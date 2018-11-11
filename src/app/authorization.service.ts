@@ -27,7 +27,7 @@ import {
 } from '@openid/appauth';
 import {
 	LocationLike
-} from '@openid/appauth/types';
+} from '@openid/appauth';
 
 import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
 import { distinctUntilChanged, filter, take } from 'rxjs/operators';
