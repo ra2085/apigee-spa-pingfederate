@@ -22,7 +22,9 @@ import {
   TokenResponse,
   GRANT_TYPE_AUTHORIZATION_CODE,
   AppAuthError,
-  AuthorizationServiceConfigurationJson
+  AuthorizationServiceConfigurationJson,
+  LocationLike,
+  QueryStringUtils
 } from '@openid/appauth';
 
 import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
@@ -39,6 +41,7 @@ const LS_TOKEN_RESPONSE = 'authorization.service.token_response';
 @Injectable()
 export class AuthorizationService {
 
+  private locationLike = LocationLike = window.location;
   private notifier = new AuthorizationNotifier();
   private authorizationHandler = new RedirectRequestHandler();
 
@@ -163,7 +166,7 @@ export class AuthorizationService {
   
   sessionActivity(): void {
 	  if (this._userInfos.value != null) {
-		  console.log('session activity');
+		  console.log('session activity' + JSON.stringify(this._serviceConfigs));
           const accessToken = this._tokenResponses.getValue().accessToken;
           this.requestor.xhr<UserInfo>({
               url: this._serviceConfigs.getValue().userInfoEndpoint,
@@ -176,6 +179,11 @@ export class AuthorizationService {
 			 this.authorize();
 		 });
       }
+  }
+  
+  pingSLO(): void {
+	  this.signOut();
+	  
   }
 
   authorize(): void  {
