@@ -27,6 +27,7 @@ import {
   QueryStringUtils,
   LocationLike
 } from '@openid/appauth';
+import { URL } from "url";
 
 import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
 import { distinctUntilChanged, filter, take } from 'rxjs/operators';
@@ -190,7 +191,8 @@ export class AuthorizationService {
       'TargetResource': currentUri
 	  );
 	  let query = this.utils.stringify(requestMap);
-	  this.locationLike.assign(`${this.issuer_uri}/idp/startSLO.ping?${query}`);
+	  let issuer_url = new URL(this._serviceConfigs.getValue().userInfoEndpoint);
+	  this.locationLike.assign(`https://${issuer_url.host}/idp/startSLO.ping?${query}`);
   }
 
   authorize(): void  {
