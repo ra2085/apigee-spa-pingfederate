@@ -42,6 +42,7 @@ const LS_TOKEN_RESPONSE = 'authorization.service.token_response';
 export class AuthorizationService {
 
   private locationLike: LocationLike = window.location;
+  private utils: QueryStringUtils;
   private notifier = new AuthorizationNotifier();
   private authorizationHandler = new RedirectRequestHandler();
 
@@ -182,9 +183,13 @@ export class AuthorizationService {
   }
   
   pingSLO(): void {
-	  //this.signOut();
+	  this.signOut();
 	  let currentUri = `${this.locationLike.origin}${this.locationLike.pathname}`;
-	  console.log('COSOSL ' + currentUri);
+	  let requestMap: StringMap = {
+      'TargetResource': currentUri
+	  );
+	  let query = this.utils.stringify(requestMap);
+	  this.locationLike.assign(`${this._serviceConfigs.getValue().issuer_uri}/idp/startSLO.ping?${query}`);
   }
 
   authorize(): void  {
