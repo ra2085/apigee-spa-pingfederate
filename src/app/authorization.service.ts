@@ -9,10 +9,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
-import {
-	LocationLike
-} from '@openid/appauth/types';
 import { Injectable, Inject } from '@angular/core';
 import {
   AuthorizationNotifier,
@@ -27,9 +23,11 @@ import {
   GRANT_TYPE_AUTHORIZATION_CODE,
   AppAuthError,
   AuthorizationServiceConfigurationJson,
-  LocationLike,
   QueryStringUtils
 } from '@openid/appauth';
+import {
+	LocationLike
+} from '@openid/appauth/types';
 
 import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
 import { distinctUntilChanged, filter, take } from 'rxjs/operators';
