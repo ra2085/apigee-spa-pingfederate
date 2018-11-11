@@ -24,6 +24,7 @@ import {
   AppAuthError,
   AuthorizationServiceConfigurationJson,
   QueryStringUtils,
+  BasicQueryStringUtils,
   LocationLike
 } from '@openid/appauth';
 
