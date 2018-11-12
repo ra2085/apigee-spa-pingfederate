@@ -19,6 +19,6 @@ export const environment: AuthorizationConfig & GeneralEnvironmentInfo  = {
   extras: {
    'prompt': 'consent',
     'access_type': 'offline',
-	'idp': 'test'
+	'pfidpadapterid': 'test'
   }
 };
