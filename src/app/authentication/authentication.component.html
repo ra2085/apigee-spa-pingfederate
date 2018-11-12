@@ -25,7 +25,7 @@
       <p>The user has been authorized by the Identity Provider, with the following additional user information.</p>
       <pre class='json-display'>{{ userInfo | json }}</pre>
       <p>Requested content.</p>
-      <pre class='json-display'>{{ requestedContent }}</pre>
+      <pre class='json-display'>{{ requestedContent | json }}</pre>
   </mat-card-content>
   <button id="handle-sign-out" mat-button (click)='authorizationService.signOut()'>SIGN OUT</button>
   <button id="handle-log-out" mat-button (click)='authorizationService.pingSLO()'>PING LOG OUT</button>

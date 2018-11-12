@@ -23,7 +23,7 @@ export class AuthenticationComponent implements OnInit {
 
   public userInfo: UserInfo | null;
   public authorized: boolean;
-  public requestedContent = "";
+  public requestedContent = {};
 
   constructor(private authorizationService: AuthorizationService) {
   }
