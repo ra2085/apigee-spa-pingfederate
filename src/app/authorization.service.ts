@@ -265,7 +265,7 @@ export class AuthorizationService {
   requestResource(): void {
   console.log('is Valid: ' + this._tokenResponses.getValue().isValid());
 		if(this._tokenResponses.getValue().isValid()) {
-			console.log('session activity');
+			console.log('request protected resource');
           const accessToken = this._tokenResponses.getValue().accessToken;
           this.requestor.xhr<string>({
               url: 'https://gonzalezruben-eval-test.apigee.net/hello/v1/hello',
@@ -275,6 +275,7 @@ export class AuthorizationService {
             }).then((requested_content) => {
 			  this._requestedContent.next(requestedContent);
 		  }).catch((err) => {
+			  console.log('request protected resource error ' + err);
 			 this.authorize();
 		  });
 		} else {
