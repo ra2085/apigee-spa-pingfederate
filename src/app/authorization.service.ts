@@ -256,6 +256,7 @@ export class AuthorizationService {
   }
   
   requestResource(): void {
+  console.log('is Valid: ' + this._tokenResponses.getValue().isValid());
 	  this.authorizeToken();
   }
 
