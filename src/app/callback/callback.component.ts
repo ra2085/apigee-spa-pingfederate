@@ -14,6 +14,7 @@ import { RedirectRequestHandler } from '@openid/appauth';
 import { AuthorizationService } from '../authorization.service';
 import { AppRoutingModule } from '../app-routing.module';
 import { Router } from '@angular/router';
+const AUTH_ERROR     = 'authorization.service.error';
 
 @Component({
   selector: 'app-callback',
@@ -40,6 +41,9 @@ export class CallbackComponent implements OnInit {
           this.router.navigate(['dashboard']);
         });
       } else {
+		  if (new URLSearchParams(window.location.hash.substring(1)).has('error')){
+			  console.log('errorAuth');
+		  }
         this.router.navigate(['dashboard']);
       }
     });
