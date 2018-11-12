@@ -177,7 +177,7 @@ export class AuthorizationService {
   }
   
   public requestedContents(): Observable<string> {
-	  return this._requestedContent().asObservable.pipe(distinctUntilChanged());
+	  return this._requestedContent.asObservable().pipe(distinctUntilChanged());
   }
   
   sessionActivity(): void {
