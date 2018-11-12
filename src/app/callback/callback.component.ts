@@ -41,8 +41,8 @@ export class CallbackComponent implements OnInit {
           this.router.navigate(['dashboard']);
         });
       } else {
-		  if (new URLSearchParams(window.location.hash.substring(1)).has('error')){
-			  console.log('errorAuth');
+		  if(new URLSearchParams(window.location.search).has(error)){
+			 window.localStorage.setItem(AUTH_ERROR, new URLSearchParams(window.location.search).get('error')); 
 		  }
         this.router.navigate(['dashboard']);
       }

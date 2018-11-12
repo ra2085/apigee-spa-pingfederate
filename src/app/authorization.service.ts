@@ -38,6 +38,7 @@ const LS_ISSUER_URI     = 'authorization.service.issuer_uri';
 const LS_USER_INFO      = 'authorization.service.user_info';
 const LS_OPENID_CONFIG  = 'authorization.service.parsed_openid_configuration';
 const LS_TOKEN_RESPONSE = 'authorization.service.token_response';
+const AUTH_ERROR     = 'authorization.service.error';
 
 @Injectable()
 export class AuthorizationService {
@@ -152,6 +153,12 @@ export class AuthorizationService {
     if (authorizationServiceConfiguration == null) {
       this.fetchServiceConfiguration(environment);
     }
+	if (window.localStorage.getItem(AUTH_ERROR) !== null){
+		if(window.localStorage.getItem(AUTH_ERROR) == 'login_required') {
+			this.authorize();
+		}
+		window.localStorage.removeItem(AUTH_ERROR);
+	}
   }
 
   public serviceConfiguration(): Observable<AuthorizationServiceConfiguration> {
