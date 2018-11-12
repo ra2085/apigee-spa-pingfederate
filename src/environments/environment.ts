@@ -8,13 +8,13 @@
 // WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//  issuer_uri: 'https://35.237.173.209:9031',
 
 import { AuthorizationConfig, GeneralEnvironmentInfo } from '../app/authorization_config';
 
 export const environment: AuthorizationConfig & GeneralEnvironmentInfo  = {
   production: false,
-//  issuer_uri: 'https://35.237.173.209:9031',
-  issuer_uri: 'https://gonzalezruben-eval-test.apigee.net/ping_apigee_oauth',
+  issuer_uri: 'https://gonzalezruben-eval-test.apigee.net/ping_apigee_oauth'
   client_id: 'client_a',
   redirect_uri: 'https://4200-dot-4427029-dot-devshell.appspot.com/callback',
   extras: {
