@@ -194,6 +194,34 @@ export class AuthorizationService {
 	  this.locationLike.assign(`https://${issuer_url.host}/idp/startSLO.ping`);
   }
 
+  authorizeToken(): void  {
+    this._serviceConfigs
+    .pipe(filter((value: any) => value != null))
+    .pipe(take(1))
+    .subscribe((configuration: AuthorizationServiceConfiguration) => {
+      const scope = this.environment.scope || 'openid';
+
+	  let requestMapCopy: StringMap = {}
+	  if (this.environment.extras) {
+      for (let extra in this.environment.extras) {
+		  if(extra == 'prompt'){
+			requestMapCopy[extra] = 'none';
+		  } else {
+			requestMapCopy[extra] = this.environment.extras[extra];  
+		  }
+	  }
+	  }
+	  
+      // create a request
+      const request = new AuthorizationRequest(
+        this.environment.client_id, this.environment.redirect_uri, scope, AuthorizationRequest.RESPONSE_TYPE_CODE,
+        undefined /* state */, requestMapCopy);
+
+        console.log('Making authorization request ', configuration, request);
+        this.authorizationHandler.performAuthorizationRequest(configuration, request);
+    });
+  }
+  
   authorize(): void  {
     this._serviceConfigs
     .pipe(filter((value: any) => value != null))
@@ -219,6 +247,10 @@ export class AuthorizationService {
   signOut(): void {
     console.log('signing out');
     this._tokenResponses.next(null);
+  }
+  
+  requestResource(): void {
+	  this.authorizeToken();
   }
 
   completeAuthorizationRequest(): Promise<TokenResponse> {
