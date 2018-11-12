@@ -18,6 +18,7 @@ export const environment: AuthorizationConfig & GeneralEnvironmentInfo  = {
   redirect_uri: 'https://4200-dot-4427029-dot-devshell.appspot.com/callback',
   extras: {
    'prompt': 'consent',
-    'access_type': 'offline'
+    'access_type': 'offline',
+	'idp': 'test'
   }
 };
