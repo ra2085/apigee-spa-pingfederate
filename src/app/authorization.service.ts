@@ -211,13 +211,12 @@ export class AuthorizationService {
 		  }
 	  }
 	  }
-	  
       // create a request
       const request = new AuthorizationRequest(
         this.environment.client_id, this.environment.redirect_uri, scope, AuthorizationRequest.RESPONSE_TYPE_CODE,
         undefined /* state */, requestMapCopy);
 
-        console.log('Making authorization request ', configuration, request);
+        console.log('Making authorization request prompt none ', configuration, request);
         this.authorizationHandler.performAuthorizationRequest(configuration, request);
     });
   }
