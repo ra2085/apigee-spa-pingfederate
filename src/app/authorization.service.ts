@@ -249,9 +249,9 @@ export class AuthorizationService {
       const scope = this.environment.scope || 'openid';
 
       // create a request
-      const request = new AuthorizationRequest(
+      const request = new AuthorizationRequest({
         this.environment.client_id, this.environment.redirect_uri, scope, AuthorizationRequest.RESPONSE_TYPE_CODE,
-        undefined /* state */, this.environment.extras);
+	  undefined /* state */, this.environment.extras}, true);
 
         console.log('Making authorization request ', configuration, request);
         this.authorizationHandler.performAuthorizationRequest(configuration, request);
