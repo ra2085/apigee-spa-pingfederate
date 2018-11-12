@@ -16,7 +16,7 @@ import { AuthorizationConfig, GeneralEnvironmentInfo } from '../app/authorizatio
 
 export const environment: AuthorizationConfig & GeneralEnvironmentInfo = {
   production: true,
-  issuer_uri: 'https://gonzalezruben-eval-test.apigee.net/ping_apigee_oauth'
+  issuer_uri: 'https://gonzalezruben-eval-test.apigee.net/ping_apigee_oauth',
   client_id: 'client_a',
   redirect_uri: 'https://4200-dot-4427029-dot-devshell.appspot.com/callback',
   extras: {
