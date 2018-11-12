@@ -26,9 +26,13 @@
       <pre class='json-display'>{{ userInfo | json }}</pre>
       <p>Requested content.</p>
       <pre class='json-display'>{{ requestedContent | json }}</pre>
+	  
+      <p>Requested sensitive content.</p>
+      <pre class='json-display'>{{ requestedSensitiveContent | json }}</pre>
   </mat-card-content>
   <button id="handle-sign-out" mat-button (click)='authorizationService.signOut()'>SIGN OUT</button>
   <button id="handle-log-out" mat-button (click)='authorizationService.pingSLO()'>PING LOG OUT</button>
   <button id="handle-session-activity" mat-button (click)='authorizationService.sessionActivity()'>SESSION ACTIVITY</button>
   <button id="handle-resource-request" mat-button (click)='authorizationService.requestResource()'>REQUEST RESOURCE</button>
+  <button id="handle-sensitive-resource-request" mat-button (click)='authorizationService.requestSensitiveResource()'>REQUEST SENSITIVE RESOURCE</button>
 </mat-card>

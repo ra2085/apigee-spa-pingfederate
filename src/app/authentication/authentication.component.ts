@@ -24,6 +24,7 @@ export class AuthenticationComponent implements OnInit {
   public userInfo: UserInfo | null;
   public authorized: boolean;
   public requestedContent = {};
+  public requestedSensitiveContent = {};
 
   constructor(private authorizationService: AuthorizationService) {
   }
@@ -37,6 +38,9 @@ export class AuthenticationComponent implements OnInit {
     });
 	this.authorizationService.requestedContents().subscribe((requestedContent: string) => {
       this.requestedContent = requestedContent;
+    });
+	this.authorizationService.requestedSensitiveContents().subscribe((requestedSensitiveContent: string) => {
+      this.requestedSensitiveContent = requestedSensitiveContent;
     });
   }
 }
