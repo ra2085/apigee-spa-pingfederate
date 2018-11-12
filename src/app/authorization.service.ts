@@ -51,6 +51,7 @@ export class AuthorizationService {
   private _tokenResponses: BehaviorSubject<TokenResponse>;
   private _userInfos:      BehaviorSubject<UserInfo>;
   private _serviceConfigs: BehaviorSubject<AuthorizationServiceConfiguration>;
+  private _requestedContent: BehaviorSubject<string>;
 
   get issuerUri(): string {
     return this.environment.issuer_uri;
@@ -69,6 +70,7 @@ export class AuthorizationService {
     let authorizationServiceConfiguration: AuthorizationServiceConfiguration | null = null;
     let tokenResponse: TokenResponse | null = null;
     let userInfo: UserInfo | null = null;
+	let requestedContent: string | null = null;
 
     // verify that we are still working with the same IDP, since a reload may
     // have been due to an underlying configuration change
@@ -95,6 +97,7 @@ export class AuthorizationService {
     this._tokenResponses = new BehaviorSubject(tokenResponse);
     this._serviceConfigs = new BehaviorSubject(authorizationServiceConfiguration);
     this._userInfos      = new BehaviorSubject(userInfo);
+	this._requestedContent = new BehaviorSubject(requestedContent);
 
     // update local storage on changes
     this._serviceConfigs.subscribe((config: AuthorizationServiceConfiguration) => {
@@ -171,6 +174,10 @@ export class AuthorizationService {
 
   public userInfos(): Observable<UserInfo> {
     return this._userInfos.asObservable().pipe(distinctUntilChanged());
+  }
+  
+  public requestedContents(): Observable<string> {
+	  return this._requestedContent.asObservable.pipe(distinctUntilChanged());
   }
   
   sessionActivity(): void {
@@ -258,8 +265,20 @@ export class AuthorizationService {
   requestResource(): void {
   console.log('is Valid: ' + this._tokenResponses.getValue().isValid());
 		if(this._tokenResponses.getValue().isValid()) {
-			
+			console.log('session activity');
+          const accessToken = this._tokenResponses.getValue().accessToken;
+          this.requestor.xhr<string>({
+              url: 'https://gonzalezruben-eval-test.apigee.net/hello/v1/hello',
+              method: 'GET',
+              dataType: 'json',
+              headers: {'Authorization': `Bearer ${accessToken}`}
+            }).then((requested_content) => {
+			  this._requestedContent.next(requestedContent);
+		  }).catch((err) => {
+			 this.authorize();
+		  });
 		} else {
+			this._tokenResponses.next(null);
 			this.authorizeToken();
 		}
   }

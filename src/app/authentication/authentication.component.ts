@@ -35,5 +35,8 @@ export class AuthenticationComponent implements OnInit {
     this.authorizationService.tokenResponse().subscribe((tokenResponse: TokenResponse) => {
       this.authorized = tokenResponse != null;
     });
+	this.authorizationService.requestedContents().subscribe((requestedContent: string) => {
+      this.requestedContent = requestedContent;
+    });
   }
 }
