@@ -301,7 +301,7 @@ export class AuthorizationService {
               dataType: 'json',
               headers: {'Authorization': `Bearer ${accessToken}`}
             }).then((requested_content) => {
-			  this._requestedContent.next(requested_content);
+			  this._requestedSensitiveContent.next(requested_content);
 		  }).catch((err) => {
 			  console.log('request protected resource error ' + err);
 			 this.authorize();
