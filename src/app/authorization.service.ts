@@ -25,8 +25,7 @@ import {
   AuthorizationServiceConfigurationJson,
   BasicQueryStringUtils,
   QueryStringUtils,
-  LocationLike,
-  Crypto, DefaultCrypto
+  LocationLike
 } from '@openid/appauth';
 
 import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
@@ -250,11 +249,11 @@ export class AuthorizationService {
       const scope = this.environment.scope || 'openid';
 
       // create a request
-      const request = new AuthorizationRequest(
-        this.environment.client_id, this.environment.redirect_uri, scope, AuthorizationRequest.RESPONSE_TYPE_CODE,
-        undefined /* state */, this.environment.extras, new DefaultCrypto(), true);
+      const request = new AuthorizationRequest({
+        client_id: this.environment.client_id, redirect_uri: this.environment.redirect_uri, scope: scope, response_type: AuthorizationRequest.RESPONSE_TYPE_CODE,
+	  state: undefined /* state */, extras: this.environment.extras});
 
-        console.log('Making authorization request ', configuration, JSON.stringify(request));
+        console.log('Making authorization request ', configuration, request);
         this.authorizationHandler.performAuthorizationRequest(configuration, request);
     });
   }
