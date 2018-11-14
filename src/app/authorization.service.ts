@@ -250,8 +250,12 @@ export class AuthorizationService {
 
       // create a request
       const request = new AuthorizationRequest({
-        client_id: this.environment.client_id, redirect_uri: this.environment.redirect_uri, scope: scope, response_type: AuthorizationRequest.RESPONSE_TYPE_CODE,
-	  state: undefined /* state */, extras: this.environment.extras});
+        client_id: this.environment.client_id, 
+		redirect_uri: this.environment.redirect_uri, 
+		scope: scope, response_type: 
+		AuthorizationRequest.RESPONSE_TYPE_CODE,
+	  state: undefined /* state */, 
+	  extras: this.environment.extras});
 
         console.log('Making authorization request ', configuration, request);
         this.authorizationHandler.performAuthorizationRequest(configuration, request);
