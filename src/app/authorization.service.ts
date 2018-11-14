@@ -79,11 +79,10 @@ export class AuthorizationService {
     if (environment.issuer_uri === window.localStorage.getItem(LS_ISSUER_URI)) {
       const serviceConfigJSON = JSON.parse(
         window.localStorage.getItem(LS_OPENID_CONFIG));
-      authorizationServiceConfiguration = serviceConfigJSON &&
-        AuthorizationServiceConfiguration.fromJson(serviceConfigJSON);
+      authorizationServiceConfiguration = new AuthorizationServiceConfiguration(serviceConfigJSON);
 
       const tokenResponseJSON = JSON.parse(window.localStorage.getItem(LS_TOKEN_RESPONSE));
-      tokenResponse = tokenResponseJSON && TokenResponse.fromJson(tokenResponseJSON);
+      tokenResponse = new TokenResponse(tokenResponseJSON);
 
       userInfo = JSON.parse(window.localStorage.getItem(LS_USER_INFO));
     } else {
@@ -232,9 +231,13 @@ export class AuthorizationService {
 	  }
 	  }
       // create a request
-      const request = new AuthorizationRequest(
-        this.environment.client_id, this.environment.redirect_uri, scope, AuthorizationRequest.RESPONSE_TYPE_CODE,
-        undefined /* state */, requestMapCopy);
+      const request = new AuthorizationRequest({
+        client_id: this.environment.client_id, 
+		redirect_uri: this.environment.redirect_uri, 
+		scope: scope, response_type: 
+		AuthorizationRequest.RESPONSE_TYPE_CODE,
+	  state: undefined /* state */, 
+	  extras: this.environment.extras});
 
         console.log('Making authorization request prompt none ', configuration, request);
         this.authorizationHandler.performAuthorizationRequest(configuration, request);
@@ -330,8 +333,13 @@ export class AuthorizationService {
 
             // use the code to make the token request.
             const extras: StringMap = this.environment.client_secret ? { client_secret: this.environment.client_secret } : undefined;
-            const tokenRequest = new TokenRequest(
-              this.environment.client_id, this.environment.redirect_uri, GRANT_TYPE_AUTHORIZATION_CODE, response.code, null, extras);
+            const tokenRequest = new TokenRequest({
+			client_id: this.environment.client_id, 
+			redirect_uri: this.environment.redirect_uri, 
+			grant_type: GRANT_TYPE_AUTHORIZATION_CODE, 
+			code: response.code, 
+			refresh_token: null, 
+			extras: extras});
 
             console.log('making token request:' + JSON.stringify(tokenRequest));
             tokenHandler.performTokenRequest(configuration, tokenRequest)
