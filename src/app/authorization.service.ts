@@ -333,7 +333,7 @@ export class AuthorizationService {
 
             // use the code to make the token request.
             const extras: StringMap = this.environment.client_secret ? { client_secret: this.environment.client_secret } : undefined;
-			extras['code_verifier'] = this.request.internal['code_verifier'];
+			extras['code_verifier'] = request.internal['code_verifier'];
             const tokenRequest = new TokenRequest({
 			client_id: this.environment.client_id, 
 			redirect_uri: this.environment.redirect_uri, 
