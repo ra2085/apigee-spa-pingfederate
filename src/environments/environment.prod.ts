@@ -18,7 +18,7 @@ export const environment: AuthorizationConfig & GeneralEnvironmentInfo = {
   production: true,
   issuer_uri: 'https://gonzalezruben-eval-test.apigee.net/ping_apigee_oauth',
   client_id: 'client_a',
-  redirect_uri: 'https://4200-dot-4427029-dot-devshell.appspot.com/callback',
+  redirect_uri: 'http://http://35.237.173.209:4200/callback',
   extras: {
    'prompt': 'consent',
     'access_type': 'offline',
