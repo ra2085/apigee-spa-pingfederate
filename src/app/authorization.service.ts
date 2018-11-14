@@ -253,7 +253,7 @@ export class AuthorizationService {
         this.environment.client_id, this.environment.redirect_uri, scope, AuthorizationRequest.RESPONSE_TYPE_CODE,
         undefined /* state */, this.environment.extras);
 
-        console.log('Making authorization request ', configuration, request);
+        console.log('Making authorization request ', configuration, JSON.stringify(request));
         this.authorizationHandler.performAuthorizationRequest(configuration, request);
     });
   }
