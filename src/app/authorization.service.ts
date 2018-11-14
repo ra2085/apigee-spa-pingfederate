@@ -79,10 +79,10 @@ export class AuthorizationService {
     if (environment.issuer_uri === window.localStorage.getItem(LS_ISSUER_URI)) {
       const serviceConfigJSON = JSON.parse(
         window.localStorage.getItem(LS_OPENID_CONFIG));
-      authorizationServiceConfiguration = new AuthorizationServiceConfiguration(serviceConfigJSON);
+      authorizationServiceConfiguration = serviceConfigJSON && new AuthorizationServiceConfiguration(serviceConfigJSON);
 
       const tokenResponseJSON = JSON.parse(window.localStorage.getItem(LS_TOKEN_RESPONSE));
-      tokenResponse = new TokenResponse(tokenResponseJSON);
+      tokenResponse = tokenResponseJSON && new TokenResponse(tokenResponseJSON);
 
       userInfo = JSON.parse(window.localStorage.getItem(LS_USER_INFO));
     } else {
